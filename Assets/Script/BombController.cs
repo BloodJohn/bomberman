@@ -6,7 +6,7 @@ public class BombController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"OnCollision {collision.collider.gameObject.name}");
+        //Debug.Log($"OnCollision {collision.collider.gameObject.name}");
         var hitObject = collision.collider.gameObject;
 
         var character = hitObject.GetComponent<CharacterController>();

@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {
-    [SerializeField] private GameObject BombPrefab;
+    [SerializeField] private GameObject[] BombPrefabList;
     [SerializeField] private GameObject CharacterPrefab;
     [SerializeField] private GameObject WallPrefab;
     [SerializeField] private Vector3 MaxPos = new Vector3(5f, 10f, 5f);
@@ -39,8 +39,9 @@ public class LevelController : MonoBehaviour
             MaxPos.y,
             Random.Range(-MaxPos.z, MaxPos.z));
 
+        var prefab = BombPrefabList[Random.Range(0, BombPrefabList.Length)];
 
-        var newItem = Instantiate(BombPrefab, transform);
+        var newItem = Instantiate(prefab, transform);
         newItem.transform.position = pos;
 
         return newItem.GetComponent<BombController>();
