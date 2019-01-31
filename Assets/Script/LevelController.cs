@@ -16,7 +16,12 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         Random.InitState(DateTime.Now.Second);
-        CreateCharacter();
+
+        for (var i = 0; i < 3; i++)
+        {
+            RebornCharacter();
+        }
+        
     }
 
     void Update()
@@ -47,9 +52,18 @@ public class LevelController : MonoBehaviour
         return newItem.GetComponent<BombController>();
     }
 
+    private void RebornCharacter()
+    {
+        var character = CreateCharacter();
+        character.OnDead = RebornCharacter;
+    }
+
     private CharacterController CreateCharacter()
     {
-        var pos = Vector3.up;
+        var pos = new Vector3(
+            Random.Range(-MaxPos.x, MaxPos.x),
+            1f,
+            Random.Range(-MaxPos.z, MaxPos.z));
 
         var newItem = Instantiate(CharacterPrefab, transform);
         newItem.transform.position = pos;

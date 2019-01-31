@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] private float Health = 100;
     [SerializeField] private TextMesh HpText;
+
+    public Action OnDead;
 
     private void Start()
     {
@@ -24,6 +27,8 @@ public class CharacterController : MonoBehaviour
         {
             Destroy(gameObject, 1f);
             HpText.text = $"dead %(";
+
+            OnDead?.Invoke();
         }
         else
         {
