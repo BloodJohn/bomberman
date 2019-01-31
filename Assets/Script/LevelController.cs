@@ -8,7 +8,6 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject CharacterPrefab;
     [SerializeField] private Vector3 maxPos = new Vector3(5f, 0f, 5f);
 
-    private const float HeightDropBomb = 5f;
     private const float delayDropBomb = 2f;
     private float timer;
 
@@ -34,8 +33,8 @@ public class LevelController : MonoBehaviour
     {
         var pos = new Vector3(
             Random.Range(-maxPos.x, maxPos.x),
-            HeightDropBomb,
-            Random.Range(-maxPos.y, maxPos.y));
+            maxPos.y,
+            Random.Range(-maxPos.z, maxPos.z));
 
         var newItem = Instantiate(BombPrefab, transform);
 
